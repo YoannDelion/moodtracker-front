@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Grid from '@material-ui/core/Grid'
 import { postNewEntry } from '../../redux/services/entriesService'
 import { connect } from 'react-redux'
@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import CreateIcon from '@material-ui/icons/Create'
+import IconButton from '@material-ui/core/IconButton'
+import ClearIcon from '@material-ui/icons/Clear'
 
 const styles = {
     buttonsContainer: {
@@ -26,13 +29,15 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [newEntry, setNewEntry] = useState({ feelingId: '', entryDate: '' })
     const [choosingMood, setChoosingMood] = useState(true)
+    const [updating, setUpdating] = useState(false)
 
-    const changeSelectedEntry = () => {
+    const changeSelectedEntry = useCallback(() => {
         const entryDate = selectedDate.toISOString().split('T')[0]
         const selectedEntry = entries.find(entry => entry.entryDate.split('T')[0] === entryDate)
         selectedEntry ? setChoosingMood(false) : setChoosingMood(true)
         selectCurrentEntry(selectedEntry)
-    }
+        setUpdating(false)
+    }, [entries, selectCurrentEntry, selectedDate])
 
     useEffect(() => {
         changeSelectedEntry()
@@ -45,9 +50,11 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
         newEntry.feelingId = currentTarget.value
         newEntry.entryDate = selectedDate.toISOString()
 
-        postNewEntry(newEntry)
+        postNewEntry(newEntry, updating)
         setNewEntry({ feelingId: '', entryDate: '' })
     }
+
+    const handleUpdateButtonClick = () => setUpdating(!updating)
 
     return (
         <Grid container spacing={4}>
@@ -71,7 +78,7 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
                             />
                         </MuiPickersUtilsProvider>
 
-                        {choosingMood ? (primaryFeelings ? primaryFeelings.map(feeling => <Button
+                        {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <Button
                             onClick={handleButtonClick}
                             key={feeling.feelingId}
                             value={feeling.feelingId}
@@ -85,12 +92,14 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
                         : <CircularProgress />
                     }
                 </div>
-
+                {!choosingMood && <IconButton onClick={handleUpdateButtonClick}>
+                    {updating ? <ClearIcon /> : <CreateIcon />}
+                </IconButton>}
             </Grid>
             <Grid item sm={4} xs={12}>
                 Side content
           </Grid>
-        </Grid>
+        </Grid >
     )
 }
 

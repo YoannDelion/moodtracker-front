@@ -1,5 +1,5 @@
 import { loadingUi, stopLoadingUi } from '../slices/uiSlice'
-import { addNewEntry } from '../slices/entriesSlice'
+import { addNewEntry, deleteCurrentEntryFromStore } from '../slices/entriesSlice'
 import axios from 'axios'
 import { fetchedAllEntries } from '../slices/entriesSlice'
 import store from '../store'
@@ -9,7 +9,7 @@ import store from '../store'
  * @param entry
  * @returns {function(...[*]=)}
  */
-export const postNewEntry = entry => async dispatch => {
+export const postNewEntry = (entry, updating) => async dispatch => {
     dispatch(loadingUi())
     try {
         await axios.post('/entry', entry)
@@ -19,8 +19,9 @@ export const postNewEntry = entry => async dispatch => {
         const feeling = store.getState().feelings.primaryFeelings.find(feeling => feeling.feelingId === entry.feelingId)
         entry.feeling = feeling
 
+        if (updating) dispatch(deleteCurrentEntryFromStore())
+
         dispatch(addNewEntry(entry))
-        //todo update entry
         dispatch(stopLoadingUi())
     } catch (e) {
         dispatch(stopLoadingUi())
