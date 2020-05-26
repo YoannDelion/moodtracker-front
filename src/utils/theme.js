@@ -1,18 +1,18 @@
 export default {
     //     palette: {
-//         primary: {
-//             light: '#ff7961',
-//             main: '#f44336',
-//             dark: '#ba000d',
-//             contrastText: '#fff',
-//         },
-//         secondary: {
-//             light: '#ff7961',
-//             main: '#f44336',
-//             dark: '#ba000d',
-//             contrastText: '#000',
-//         },
-//     },
+    //         primary: {
+    //             light: '#ff7961',
+    //             main: '#f44336',
+    //             dark: '#ba000d',
+    //             contrastText: '#fff',
+    //         },
+    //         secondary: {
+    //             light: '#ff7961',
+    //             main: '#f44336',
+    //             dark: '#ba000d',
+    //             contrastText: '#000',
+    //         },
+    //     },
     form: {
         formContainer: {
             margin: '3rem auto 0 auto',
@@ -36,5 +36,9 @@ export default {
         progress: {
             position: 'absolute'
         }
+    },
+    monthPicker: {
+        textAlign: 'center',
+        marginTop: '1.5rem'
     }
 }

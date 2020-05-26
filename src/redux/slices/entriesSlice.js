@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     entries: [],
-    currentEntry: {}
+    currentEntry: {},
+    selectedMonth: new Date()
 }
 
 const entriesSlice = createSlice({
@@ -18,10 +19,11 @@ const entriesSlice = createSlice({
         selectCurrentEntry: (state, action) => { state.currentEntry = action.payload },
         deleteCurrentEntryFromStore: state => {
             state.entries = state.entries.filter(entry => entry.entryId !== state.currentEntry.entryId)
-        }
+        },
+        selectMonth: (state, action) => { state.selectedMonth = action.payload }
     }
 })
 
-export const { addNewEntry, fetchedAllEntries, emptyEntries, selectCurrentEntry, updateEntry, deleteCurrentEntryFromStore } = entriesSlice.actions
+export const { addNewEntry, fetchedAllEntries, emptyEntries, selectCurrentEntry, updateEntry, deleteCurrentEntryFromStore, selectMonth } = entriesSlice.actions
 
 export default entriesSlice.reducer

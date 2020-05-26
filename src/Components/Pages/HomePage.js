@@ -7,8 +7,7 @@ import { selectCurrentEntry } from '../../redux/slices/entriesSlice'
 import Button from '@material-ui/core/Button'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
-import DateFnsUtils from '@date-io/date-fns'
+import { KeyboardDatePicker } from '@material-ui/pickers'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import CreateIcon from '@material-ui/icons/Create'
 import IconButton from '@material-ui/core/IconButton'
@@ -64,19 +63,17 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
 
                 <div className={classes.buttonsContainer}>
                     {!isLoading ? <>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <KeyboardDatePicker
-                                margin="normal"
-                                id="date-picker-dialog"
-                                format="MM/dd/yyyy"
-                                disableFuture
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change mood date',
-                                }}
-                            />
-                        </MuiPickersUtilsProvider>
+                        <KeyboardDatePicker
+                            margin="normal"
+                            id="date-picker-dialog"
+                            format="MM/dd/yyyy"
+                            disableFuture
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change mood date',
+                            }}
+                        />
 
                         {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <Button
                             onClick={handleButtonClick}

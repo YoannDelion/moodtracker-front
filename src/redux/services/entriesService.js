@@ -1,5 +1,5 @@
 import { loadingUi, stopLoadingUi } from '../slices/uiSlice'
-import { addNewEntry, deleteCurrentEntryFromStore } from '../slices/entriesSlice'
+import { addNewEntry, deleteCurrentEntryFromStore, selectMonth } from '../slices/entriesSlice'
 import axios from 'axios'
 import { fetchedAllEntries } from '../slices/entriesSlice'
 import store from '../store'
@@ -45,3 +45,8 @@ export const fetchAllEntries = () => async dispatch => {
         return Promise.reject(e)
     }
 }
+
+/**
+ * Select month to filter entries for statistics
+ */
+export const selectMonthForStatistics = month => dispatch => dispatch(selectMonth(month))
