@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import Grid from '@material-ui/core/Grid'
 import { postNewEntry } from '../../redux/services/entriesService'
 import { connect } from 'react-redux'
 import { selectCurrentEntry } from '../../redux/slices/entriesSlice'
 // Material UI
+import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
@@ -56,47 +56,42 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
     const handleUpdateButtonClick = () => setUpdating(!updating)
 
     return (
-        <Grid container spacing={4}>
-            <Grid item sm={8} xs={12}>
-                <Typography variant={'body1'}>Hello {'username'}</Typography>
-                <Typography variant={'body1'}>How are you feeling today ?</Typography>
+        <Container maxWidth='sm'>
+            <Typography variant={'body1'}>Hello {'username'}</Typography>
+            <Typography variant={'body1'}>How are you feeling today ?</Typography>
 
-                <div className={classes.buttonsContainer}>
-                    {!isLoading ? <>
-                        <KeyboardDatePicker
-                            margin="normal"
-                            id="date-picker-dialog"
-                            format="MM/dd/yyyy"
-                            disableFuture
-                            value={selectedDate}
-                            onChange={handleDateChange}
-                            KeyboardButtonProps={{
-                                'aria-label': 'change mood date',
-                            }}
-                        />
+            <div className={classes.buttonsContainer}>
+                {!isLoading ? <>
+                    <KeyboardDatePicker
+                        margin="normal"
+                        id="date-picker-dialog"
+                        format="MM/dd/yyyy"
+                        disableFuture
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change mood date',
+                        }}
+                    />
 
-                        {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <Button
-                            onClick={handleButtonClick}
-                            key={feeling.feelingId}
-                            value={feeling.feelingId}
-                            variant='contained'
-                            color='primary'>
-                            {feeling.feelingName}
-                        </Button>)
-                            : <CircularProgress />)
-                            : <Typography>{currentEntry.feeling.feelingName}</Typography>}
-                    </>
-                        : <CircularProgress />
-                    }
-                </div>
-                {!choosingMood && <IconButton onClick={handleUpdateButtonClick}>
-                    {updating ? <ClearIcon /> : <CreateIcon />}
-                </IconButton>}
-            </Grid>
-            <Grid item sm={4} xs={12}>
-                Side content
-          </Grid>
-        </Grid >
+                    {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <Button
+                        onClick={handleButtonClick}
+                        key={feeling.feelingId}
+                        value={feeling.feelingId}
+                        variant='contained'
+                        color='primary'>
+                        {feeling.feelingName}
+                    </Button>)
+                        : <CircularProgress />)
+                        : <Typography>{currentEntry.feeling.feelingName}</Typography>}
+                </>
+                    : <CircularProgress />
+                }
+            </div>
+            {!choosingMood && <IconButton onClick={handleUpdateButtonClick}>
+                {updating ? <ClearIcon /> : <CreateIcon />}
+            </IconButton>}
+        </Container>
     )
 }
 

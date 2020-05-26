@@ -32,33 +32,33 @@ const LoginPage = ({ classes, history, loginUser, isLoading }) => {
     }
 
     return (
-      <Grid container>
-          <Grid item sm/>
-          <Grid item sm className={classes.formContainer}>
-              <Typography variant='h4' component='h1'>Login Page</Typography>
+        <Grid container>
+            <Grid item sm />
+            <Grid item sm className={classes.formContainer}>
+                <Typography variant='h4' component='h1'>Login Page</Typography>
 
-              <form className={classes.form} onSubmit={handleSubmit} noValidate>
-                  <TextField id="email" name='email' label="Email" type='email' onChange={handleChange}
-                             value={credentials.email} fullWidth className={classes.textField}
-                             helperText={errors.email} error={!!errors.email}
-                  />
-                  <TextField id="password" name='password' label="Password" type='password' onChange={handleChange}
-                             value={credentials.password} fullWidth className={classes.textField}
-                             helperText={errors.password} error={!!errors.password}
-                  />
-                  {errors.general &&
-                  <Typography variant='body2' className={classes.customError}>{errors.general}</Typography>}
-                  <Button type='submit' variant="contained" color="primary" className={classes.button}
-                          disabled={isLoading}>
-                      Login
-                      {isLoading && <CircularProgress size={30} className={classes.progress}/>}
-                  </Button>
-              </form>
-              <Typography variant={'caption'}>Don't have an account ? Sign up <Link
-                to={'/signup'}>here</Link></Typography>
-          </Grid>
-          <Grid item sm/>
-      </Grid>
+                <form className={classes.form} onSubmit={handleSubmit} noValidate>
+                    <TextField id="email" name='email' label="Email" type='email' onChange={handleChange}
+                        value={credentials.email} fullWidth className={classes.textField}
+                        helperText={errors.email} error={!!errors.email}
+                    />
+                    <TextField id="password" name='password' label="Password" type='password' onChange={handleChange}
+                        value={credentials.password} fullWidth className={classes.textField}
+                        helperText={errors.password} error={!!errors.password}
+                    />
+                    {errors.general &&
+                        <Typography variant='body2' className={classes.customError}>{errors.general}</Typography>}
+                    <Button type='submit' variant="contained" color="primary" className={classes.button}
+                        disabled={isLoading}>
+                        Login
+                      {isLoading && <CircularProgress size={30} className={classes.progress} />}
+                    </Button>
+                </form>
+                <Typography variant={'caption'}>Don't have an account ? Sign up <Link
+                    to={'/signup'}>here</Link></Typography>
+            </Grid>
+            <Grid item sm />
+        </Grid>
     )
 }
 
