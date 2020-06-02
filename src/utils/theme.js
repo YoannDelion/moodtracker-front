@@ -40,5 +40,12 @@ export default {
     monthPicker: {
         textAlign: 'center',
         marginTop: '1.5rem'
+    },
+    calendar: {
+        width: '100%',
+        marginTop: '1rem'
+    },
+    today: {
+        color: 'red'
     }
 }

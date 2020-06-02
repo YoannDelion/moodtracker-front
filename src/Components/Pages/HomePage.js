@@ -65,7 +65,7 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
                     <KeyboardDatePicker
                         margin="normal"
                         id="date-picker-dialog"
-                        format="MM/dd/yyyy"
+                        format="MM/DD/yyyy"
                         disableFuture
                         value={selectedDate}
                         onChange={handleDateChange}
