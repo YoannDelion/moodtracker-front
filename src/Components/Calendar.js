@@ -19,7 +19,6 @@ const Calendar = ({ classes, selectedMonth, entries }) => {
     }
 
     const currentDay = () => moment(date).format('D')
-    const currentMonth = () => moment(date).format('MMMM')
     const weekDayShort = moment.weekdaysShort()
     const weekDayShortName = weekDayShort.map(day => <th key={day} className='week-day'>{day}</th>)
     const firstDayOfMonth = () => moment(date).startOf("month").format("d")

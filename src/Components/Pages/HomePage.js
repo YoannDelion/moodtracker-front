@@ -2,12 +2,13 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { postNewEntry } from '../../redux/services/entriesService'
 import { connect } from 'react-redux'
 import { selectCurrentEntry } from '../../redux/slices/entriesSlice'
+import moment from 'moment'
 // Material UI
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
-import { KeyboardDatePicker } from '@material-ui/pickers'
+import { DatePicker } from '@material-ui/pickers'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import CreateIcon from '@material-ui/icons/Create'
 import IconButton from '@material-ui/core/IconButton'
@@ -25,7 +26,7 @@ const styles = {
 
 const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, selectCurrentEntry, currentEntry }) => {
 
-    const [selectedDate, setSelectedDate] = useState(new Date())
+    const [selectedDate, setSelectedDate] = useState(moment())
     const [newEntry, setNewEntry] = useState({ feelingId: '', entryDate: '' })
     const [choosingMood, setChoosingMood] = useState(true)
     const [updating, setUpdating] = useState(false)
@@ -62,7 +63,8 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
 
             <div className={classes.buttonsContainer}>
                 {!isLoading ? <>
-                    <KeyboardDatePicker
+                    <DatePicker
+                        autoOk
                         margin="normal"
                         id="date-picker-dialog"
                         format="MM/DD/yyyy"

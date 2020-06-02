@@ -9,7 +9,6 @@ import Calendar from '../Calendar'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { withStyles } from '@material-ui/core'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 const StatsPage = ({ classes, selectMonthForStatistics, selectedMonth, entries }) => {
 
