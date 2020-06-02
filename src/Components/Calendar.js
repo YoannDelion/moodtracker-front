@@ -4,12 +4,19 @@ import 'tail.datetime/css/tail.datetime-default-blue.css'
 import theme from '../utils/theme'
 import { withStyles } from '@material-ui/core'
 
-const Calendar = ({ classes, selectedMonth }) => {
+const Calendar = ({ classes, selectedMonth, entries }) => {
     const [date, setDate] = useState(new Date(selectedMonth))
 
     useEffect(() => {
         setDate(selectedMonth)
     }, [selectedMonth])
+
+    const hasEntry = monthDay => {
+        let testDate = new Date(date)
+        testDate.setDate(monthDay)
+        testDate = testDate.toISOString().split('T')[0]
+        return entries.find(entry => entry.entryDate.split('T')[0] === testDate)
+    }
 
     const currentDay = () => moment(date).format('D')
     const currentMonth = () => moment(date).format('MMMM')
@@ -24,7 +31,8 @@ const Calendar = ({ classes, selectedMonth }) => {
     // Creates days array
     for (let d = 1; d <= moment(date).daysInMonth(); d++) {
         const isToday = d == currentDay() ? classes.today : ""
-        daysInMonth.push(<td key={d} className={`calendar-day + ${isToday}`}>{d}</td>)
+        let entry = hasEntry(d)
+        daysInMonth.push(<td key={d} className={`calendar-day + ${isToday}`}>{entry ? entry.feeling.feelingName.charAt(0) : d}</td>)
     }
     const totalSlots = [...blanks, ...daysInMonth]
     const rows = []

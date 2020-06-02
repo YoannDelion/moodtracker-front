@@ -35,14 +35,7 @@ const StatsPage = ({ classes, selectMonthForStatistics, selectedMonth, entries }
                     onChange={handleDateChange}
                     disableFuture
                 />
-                <Calendar selectedMonth={new Date(selectedMonth)} />
-
-                {entries ? entries.map(entry => <div>
-                    {entry.entryDate} - {entry.feeling.feelingName}
-                </div>
-                )
-                    : <CircularProgress />
-                }
+                <Calendar selectedMonth={new Date(selectedMonth)} entries={entries} />
 
             </div>
         </Container>
