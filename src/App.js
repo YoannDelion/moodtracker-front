@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+import './App.scss'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import HomePage from './Components/Pages/HomePage'
 import LoginPage from './Components/Pages/LoginPage'

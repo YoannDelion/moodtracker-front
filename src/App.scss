@@ -13,3 +13,14 @@ html, body {
 .nav-container {
     margin: auto;
 }
+
+.feelings-list {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+
+    &__element {
+        display: flex;
+        flex-direction: column;
+    }
+}
