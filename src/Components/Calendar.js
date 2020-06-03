@@ -5,12 +5,14 @@ import theme from '../utils/theme'
 import { withStyles } from '@material-ui/core'
 
 const Calendar = ({ classes, selectedMonth, entries }) => {
+
     const [date, setDate] = useState(new Date(selectedMonth))
 
     useEffect(() => {
         setDate(selectedMonth)
     }, [selectedMonth])
 
+    // Check if a day has an existing entry
     const hasEntry = monthDay => {
         let testDate = new Date(date)
         testDate.setDate(monthDay)
@@ -18,21 +20,29 @@ const Calendar = ({ classes, selectedMonth, entries }) => {
         return entries.find(entry => entry.entryDate.split('T')[0] === testDate)
     }
 
-    const currentDay = () => moment(date).format('D')
+    // Return an array with the short name of weekdays
     const weekDayShort = moment.weekdaysShort()
+
+    // Creates the header of the calendar
     const weekDayShortName = weekDayShort.map(day => <th key={day} className='week-day'>{day}</th>)
+
+    // Return first day of the month 
     const firstDayOfMonth = () => moment(date).startOf("month").format("d")
+
+    // Creates blanks at the start of the calendar to match the first day of the month 
     const blanks = []
     for (let i = 0; i < firstDayOfMonth(); i++) {
-        blanks.push(<td className='calendar-day empty'>{''}</td>)
+        blanks.push(<td key={`empty-${i}`} className='calendar-day empty'>{''}</td>)
     }
+
+    // Creates the array with the days of the month
     let daysInMonth = []
-    // Creates days array
     for (let d = 1; d <= moment(date).daysInMonth(); d++) {
-        const isToday = d == currentDay() ? classes.today : ""
         let entry = hasEntry(d)
-        daysInMonth.push(<td key={d} className={`calendar-day + ${isToday}`}>{entry ? entry.feeling.feelingName.charAt(0) : d}</td>)
+        daysInMonth.push(<td key={d} className='calendar-day'>{entry ? entry.feeling.feelingName.charAt(0) : d}</td>)
     }
+
+    // Creates the needed amount of rows in the calendar
     const totalSlots = [...blanks, ...daysInMonth]
     const rows = []
     let cells = []
@@ -48,7 +58,9 @@ const Calendar = ({ classes, selectedMonth, entries }) => {
             rows.push(cells)
         }
     })
-    daysInMonth = rows.map((d, i) => <tr>{d}</tr>)
+
+    // Finally creates the body of the calendar
+    daysInMonth = rows.map((d, i) => <tr key={i}>{d}</tr>)
 
     return (
         <table className={classes.calendar}>

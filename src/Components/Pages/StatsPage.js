@@ -16,6 +16,7 @@ const StatsPage = ({ classes, selectMonthForStatistics, selectedMonth, entries, 
 
     const handleDateChange = date => selectMonthForStatistics(date)
 
+    // Count the number of entries for each feeling
     const sortFeelings = useCallback(entries => {
         const feelings = []
         primaryFeelings.forEach(primaryFeeling => {
