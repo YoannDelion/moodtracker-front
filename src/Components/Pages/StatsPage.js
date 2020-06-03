@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React from 'react'
 import { DatePicker } from "@material-ui/pickers"
 import theme from '../../utils/theme'
 import { connect } from 'react-redux'
@@ -9,29 +9,11 @@ import Calendar from '../Calendar'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import { withStyles } from '@material-ui/core'
+import FeelingsStatsList from '../FeelingsStatsList'
 
 const StatsPage = ({ classes, selectMonthForStatistics, selectedMonth, entries, primaryFeelings }) => {
 
-    const [feelings, setFeelings] = useState([])
-
     const handleDateChange = date => selectMonthForStatistics(date)
-
-    // Count the number of entries for each feeling
-    const sortFeelings = useCallback(entries => {
-        const feelings = []
-        primaryFeelings.forEach(primaryFeeling => {
-            let filtered = entries.filter(entry => entry.feeling.feelingId === primaryFeeling.feelingId)
-            feelings.push({
-                ...primaryFeeling,
-                entriesCount: filtered.length
-            })
-        })
-        setFeelings(feelings)
-    }, [primaryFeelings])
-
-    useEffect(() => {
-        sortFeelings(entries)
-    }, [sortFeelings, entries])
 
     return (
         <Container maxWidth='sm'>
@@ -55,14 +37,7 @@ const StatsPage = ({ classes, selectMonthForStatistics, selectedMonth, entries, 
                 />
                 <Calendar selectedMonth={new Date(selectedMonth)} entries={entries} />
 
-                <div className="feelings-list">
-                    {feelings.map(feeling => (
-                        <div className='feelings-list__element' key={feeling.feelingId}>
-                            <span>{feeling.feelingName}</span>
-                            <span>{feeling.entriesCount}</span>
-                        </div>
-                    ))}
-                </div>
+                <FeelingsStatsList primaryFeelings={primaryFeelings} entries={entries} />
             </div>
         </Container>
     )
