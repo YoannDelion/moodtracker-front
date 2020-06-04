@@ -4,6 +4,8 @@ import 'tail.datetime/css/tail.datetime-default-blue.css'
 import theme from '../utils/theme'
 import { withStyles } from '@material-ui/core'
 
+import * as Moods from '../Assets/mood-icons'
+
 const Calendar = ({ classes, selectedMonth, entries }) => {
 
     const [date, setDate] = useState(new Date(selectedMonth))
@@ -39,7 +41,10 @@ const Calendar = ({ classes, selectedMonth, entries }) => {
     let daysInMonth = []
     for (let d = 1; d <= moment(date).daysInMonth(); d++) {
         let entry = hasEntry(d)
-        daysInMonth.push(<td key={d} className='calendar-day'>{entry ? entry.feeling.feelingName.charAt(0) : d}</td>)
+        daysInMonth.push(<td key={d} className='calendar-day'>{entry ? <img
+            src={Moods[entry.feeling.feelingName]} alt={entry.feeling.feelingName}
+            className={`calendar-mood moods--${entry.feeling.feelingName}`} />
+            : d}</td>)
     }
 
     // Creates the needed amount of rows in the calendar

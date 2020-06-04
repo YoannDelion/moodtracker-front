@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
+import * as Moods from '../Assets/mood-icons'
 
 const FeelingsStatsList = ({ primaryFeelings, entries }) => {
 
@@ -25,7 +26,8 @@ const FeelingsStatsList = ({ primaryFeelings, entries }) => {
         <div className="feelings-list">
             {feelings.map(feeling => (
                 <div className='feelings-list__element' key={feeling.feelingId}>
-                    <span>{feeling.feelingName}</span>
+                    <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}
+                        className={`list-mood moods--${feeling.feelingName}`} />
                     <span>{feeling.entriesCount}</span>
                 </div>
             ))}

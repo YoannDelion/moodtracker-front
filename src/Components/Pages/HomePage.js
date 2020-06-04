@@ -14,6 +14,8 @@ import CreateIcon from '@material-ui/icons/Create'
 import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear'
 
+import * as Moods from '../../Assets/mood-icons'
+
 const styles = {
     buttonsContainer: {
         display: 'flex',
@@ -75,17 +77,24 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
                             'aria-label': 'change mood date',
                         }}
                     />
+                    <div>
+                        {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='moods-button-container'>
 
-                    {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <Button
-                        onClick={handleButtonClick}
-                        key={feeling.feelingId}
-                        value={feeling.feelingId}
-                        variant='contained'
-                        color='primary'>
-                        {feeling.feelingName}
-                    </Button>)
-                        : <CircularProgress />)
-                        : <Typography>{currentEntry.feeling.feelingName}</Typography>}
+                            <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}
+                                className={`moods-button-container__icon moods--${feeling.feelingName}`} />
+
+                            <Button
+                                onClick={handleButtonClick}
+                                key={feeling.feelingId}
+                                value={feeling.feelingId}
+                                variant='contained'
+                                color='primary'>
+                                {feeling.feelingName}
+                            </Button>
+                        </div>)
+                            : <CircularProgress />)
+                            : <Typography>{currentEntry.feeling.feelingName}</Typography>}
+                    </div>
                 </>
                     : <CircularProgress />
                 }
