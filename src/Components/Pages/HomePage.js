@@ -6,7 +6,6 @@ import moment from 'moment'
 // Material UI
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
-import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import { DatePicker } from '@material-ui/pickers'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -16,17 +15,8 @@ import ClearIcon from '@material-ui/icons/Clear'
 
 import * as Moods from '../../Assets/mood-icons'
 
-const styles = {
-    buttonsContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        height: '80vh'
-    }
-}
 
-const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, selectCurrentEntry, currentEntry }) => {
+const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCurrentEntry, currentEntry }) => {
 
     const [selectedDate, setSelectedDate] = useState(moment())
     const [newEntry, setNewEntry] = useState({ feelingId: '', entryDate: '' })
@@ -63,7 +53,7 @@ const HomePage = ({ classes, isLoading, postNewEntry, primaryFeelings, entries, 
             <Typography variant={'body1'}>Hello {'username'}</Typography>
             <Typography variant={'body1'}>How are you feeling today ?</Typography>
 
-            <div className={classes.buttonsContainer}>
+            <div className='buttonsContainer'>
                 {!isLoading ? <>
                     <DatePicker
                         autoOk
@@ -113,4 +103,4 @@ const mapStateToProps = state => ({
     entries: state.entries.entries
 })
 
-export default connect(mapStateToProps, { postNewEntry, selectCurrentEntry })(withStyles(styles)(HomePage))
+export default connect(mapStateToProps, { postNewEntry, selectCurrentEntry })(HomePage)

@@ -15,34 +15,27 @@ import StatsPage from './Components/Pages/StatsPage'
 import MomentUtils from '@date-io/moment'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 
-// Material UI
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-import uiTheme from './utils/theme'
 
-const theme = createMuiTheme(uiTheme)
 
 const App = () => {
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistore}>
-                <MuiThemeProvider theme={theme}>
-                    <MuiPickersUtilsProvider utils={MomentUtils}>
-                        <div className="App">
-                            <Router>
-                                <Navbar />
-                                <div className="container">
-                                    <Switch>
-                                        <PrivateRoute exact path={'/'} component={HomePage} />
-                                        <AnonymRoute exact path={'/login'} component={LoginPage} />
-                                        <AnonymRoute exact path={'/signup'} component={SignupPage} />
-                                        <PrivateRoute exact path={'/statistics'} component={StatsPage} />
-                                    </Switch>
-                                </div>
-                            </Router>
-                        </div>
-                    </MuiPickersUtilsProvider>
-                </MuiThemeProvider>
+                <MuiPickersUtilsProvider utils={MomentUtils}>
+                    <div className="App">
+                        <Router>
+                            <Navbar />
+                            <div className="container">
+                                <Switch>
+                                    <PrivateRoute exact path={'/'} component={HomePage} />
+                                    <AnonymRoute exact path={'/login'} component={LoginPage} />
+                                    <AnonymRoute exact path={'/signup'} component={SignupPage} />
+                                    <PrivateRoute exact path={'/statistics'} component={StatsPage} />
+                                </Switch>
+                            </div>
+                        </Router>
+                    </div>
+                </MuiPickersUtilsProvider>
             </PersistGate>
         </Provider>
     )

@@ -1,3 +1,6 @@
+@import './Assets/SCSS/moods.scss';
+@import './Assets/SCSS/forms.scss';
+
 html, body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -42,25 +45,19 @@ html, body {
     height: 4rem;
 }
 
-.moods{
-    &--Angry {
-        //FF595E
-        filter: invert(48%) sepia(8%) saturate(6907%) hue-rotate(318deg) brightness(104%) contrast(105%);
-    }
-    &--Neutral {
-        //8AC926
-        filter: invert(61%) sepia(75%) saturate(443%) hue-rotate(41deg) brightness(101%) contrast(89%);
-    }
-    &--Happy {
-        //FFCA3A
-        filter: invert(82%) sepia(80%) saturate(1147%) hue-rotate(323deg) brightness(100%) contrast(104%);
-    }
-    &--Sad {
-        //1982C4
-        filter: invert(35%) sepia(90%) saturate(887%) hue-rotate(172deg) brightness(98%) contrast(86%);
-    }
-    &--Fear {
-        //6A4C93
-        filter: invert(36%) sepia(22%) saturate(1247%) hue-rotate(223deg) brightness(88%) contrast(92%);
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80vh;
 }
+
+.calendar {
+    width: 100%;
+    margin-top: 1rem;
+}
+.monthPicker {
+    text-align: center;
+    margin-top: 1.5rem;
 }

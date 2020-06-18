@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import 'tail.datetime/css/tail.datetime-default-blue.css'
-import theme from '../utils/theme'
-import { withStyles } from '@material-ui/core'
 
 import * as Moods from '../Assets/mood-icons'
 
-const Calendar = ({ classes, selectedMonth, entries }) => {
+const Calendar = ({ selectedMonth, entries }) => {
 
     const [date, setDate] = useState(new Date(selectedMonth))
 
@@ -68,7 +66,7 @@ const Calendar = ({ classes, selectedMonth, entries }) => {
     daysInMonth = rows.map((d, i) => <tr key={i}>{d}</tr>)
 
     return (
-        <table className={classes.calendar}>
+        <table className='calendar'>
             <thead>
                 <tr>
                     {weekDayShortName}
@@ -79,4 +77,4 @@ const Calendar = ({ classes, selectedMonth, entries }) => {
     )
 }
 
-export default withStyles(theme)(Calendar)
+export default Calendar
