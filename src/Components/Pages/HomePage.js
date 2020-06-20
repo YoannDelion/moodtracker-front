@@ -53,7 +53,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
             <Typography variant={'body1'}>Hello {'username'}</Typography>
             <Typography variant={'body1'}>How are you feeling today ?</Typography>
 
-            <div className='buttonsContainer'>
+            <div className='moods-button-container'>
                 {!isLoading ? <>
                     <DatePicker
                         autoOk
@@ -68,10 +68,10 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                         }}
                     />
                     <div>
-                        {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='moods-button-container'>
+                        {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='mood-container'>
 
                             <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}
-                                className={`moods-button-container__icon moods--${feeling.feelingName}`} />
+                                className={`mood-container__icon moods--${feeling.feelingName}`} />
 
                             <Button
                                 onClick={handleButtonClick}

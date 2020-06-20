@@ -34,7 +34,6 @@ const StatsPage = ({ selectMonthForStatistics, selectedMonth, entries, primaryFe
                     disableFuture
                 />
                 <Calendar selectedMonth={new Date(selectedMonth)} entries={entries} />
-
                 <FeelingsStatsList primaryFeelings={primaryFeelings} entries={entries} />
             </div>
         </Container>

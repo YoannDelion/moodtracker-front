@@ -1,0 +1,27 @@
+.feelings-list {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+
+    &__element {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.calendar-mood {
+    height: 3rem;
+}
+
+.list-mood {
+    height: 4rem;
+}
+
+.calendar {
+    width: 100%;
+    margin-top: 1rem;
+}
+.monthPicker {
+    text-align: center;
+    margin-top: 1.5rem;
+}
