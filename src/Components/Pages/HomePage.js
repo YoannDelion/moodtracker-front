@@ -52,21 +52,22 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
         <Container maxWidth='sm'>
             <Typography variant={'body1'}>Hello {'username'}</Typography>
             <Typography variant={'body1'}>How are you feeling today ?</Typography>
-
+            <div className="monthPicker">
+                <DatePicker
+                    autoOk
+                    margin="normal"
+                    id="date-picker-dialog"
+                    format="MM/DD/yyyy"
+                    disableFuture
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change mood date',
+                    }}
+                />
+            </div>
             <div className='moods-button-container'>
                 {!isLoading ? <>
-                    <DatePicker
-                        autoOk
-                        margin="normal"
-                        id="date-picker-dialog"
-                        format="MM/DD/yyyy"
-                        disableFuture
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change mood date',
-                        }}
-                    />
                     <div>
                         {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='mood-container'>
 

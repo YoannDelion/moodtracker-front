@@ -1,3 +1,11 @@
+.moods-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+}
+
 .mood-container {
     display: flex;
     align-items: center;
@@ -5,12 +13,4 @@
     &__icon {
         height: 5rem;
     }
-}
-
-.moods-button-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 80vh;
 }
