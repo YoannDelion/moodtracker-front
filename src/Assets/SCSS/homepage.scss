@@ -22,3 +22,14 @@
 .homepage-footer {
     height: 10%;
 }
+
+.display-mood {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50%;
+
+    &__icon {
+        height:15rem;
+    }
+}

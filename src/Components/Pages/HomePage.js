@@ -22,6 +22,19 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
     const [newEntry, setNewEntry] = useState({ feelingId: '', entryDate: '' })
     const [choosingMood, setChoosingMood] = useState(true)
     const [updating, setUpdating] = useState(false)
+    const [isToday, setIsToday] = useState(true)
+
+    const colors = {
+        angry: '#FF595E',
+        neutral: '#8AC926',
+        happy: '#FFCA3A',
+        sad: '#1982C4',
+        fear: '#6A4C93'
+    }
+
+    const changeBackgroundColor = color => {
+        document.getElementsByTagName('html')[0].style.backgroundColor = color
+    }
 
     const changeSelectedEntry = useCallback(() => {
         const entryDate = selectedDate.toISOString().split('T')[0]
@@ -29,13 +42,20 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
         selectedEntry ? setChoosingMood(false) : setChoosingMood(true)
         selectCurrentEntry(selectedEntry)
         setUpdating(false)
+        selectedEntry && changeBackgroundColor(colors[selectedEntry.feeling.feelingName.toLowerCase()])
     }, [entries, selectCurrentEntry, selectedDate])
 
     useEffect(() => {
         changeSelectedEntry()
+        return () => {
+            changeBackgroundColor('#fff')
+        }
     }, [selectedDate, changeSelectedEntry])
 
-    const handleDateChange = date => setSelectedDate(date)
+    const handleDateChange = date => {
+        setSelectedDate(date)
+        setIsToday(date.isSame(moment(), 'day'))
+    }
 
     const handleButtonClick = ({ currentTarget }) => {
         // Not using setState because it's not immediate so it doesn't send the correct data
@@ -46,14 +66,18 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
         setNewEntry({ feelingId: '', entryDate: '' })
     }
 
-    const handleUpdateButtonClick = () => setUpdating(!updating)
+    const handleUpdateButtonClick = () => {
+        setUpdating(!updating)
+        changeBackgroundColor('#fff')
+        !updating ? changeBackgroundColor('#fff') : changeBackgroundColor(colors[currentEntry.feeling.feelingName.toLowerCase()])
+    }
 
     return (
         <Container maxWidth='sm' className='mui-container'>
 
             <div className='homepage-header'>
                 <Typography variant={'body1'}>Hello {'username'}</Typography>
-                <Typography variant={'body1'}>How are you feeling today ?</Typography>
+                <Typography variant={'body1'}>{isToday ? 'How are you feeling today?' : 'How were you feeling?'}</Typography>
                 <div className="monthPicker">
                     <DatePicker
                         autoOk
@@ -71,26 +95,27 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
             </div>
 
             <div className='moods-button-container'>
-                {!isLoading ? <>
-                    <div>
-                        {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='mood-container'>
-
-                            <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}
-                                className={`mood-container__icon moods--${feeling.feelingName}`} />
-
-                            <Button
-                                onClick={handleButtonClick}
-                                key={feeling.feelingId}
-                                value={feeling.feelingId}
-                                variant='contained'
-                                color='primary'>
-                                {feeling.feelingName}
-                            </Button>
-                        </div>)
-                            : <CircularProgress />)
-                            : <Typography>{currentEntry.feeling.feelingName}</Typography>}
-                    </div>
-                </>
+                {!isLoading ? <div>
+                    {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='mood-container'>
+                        <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}
+                            className={`mood-container__icon moods--${feeling.feelingName}`} />
+                        <Button
+                            onClick={handleButtonClick}
+                            key={feeling.feelingId}
+                            value={feeling.feelingId}
+                            variant='contained'
+                            color='primary'>
+                            {feeling.feelingName}
+                        </Button>
+                    </div>)
+                        : <CircularProgress />)
+                        : <div className={`display-mood mood--${currentEntry.feeling.feelingName}`}>
+                            <img src={Moods[currentEntry.feeling.feelingName]} alt={currentEntry.feeling.feelingName}
+                                className={`display-mood__icon moods--darkgrey`} />
+                            <Typography>{currentEntry.feeling.feelingName}</Typography>
+                        </div>
+                    }
+                </div>
                     : <CircularProgress />
                 }
             </div>
@@ -99,9 +124,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                     {updating ? <ClearIcon /> : <CreateIcon />}
                 </IconButton>}
             </div>
-
-
-        </Container>
+        </Container >
     )
 }
 

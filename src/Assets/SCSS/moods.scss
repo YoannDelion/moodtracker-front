@@ -19,4 +19,7 @@
         //6A4C93
         filter: invert(36%) sepia(22%) saturate(1247%) hue-rotate(223deg) brightness(88%) contrast(92%);
     }
+    &--darkgrey{
+        filter: invert(0%) sepia(98%) saturate(90%) hue-rotate(88deg) brightness(82%) contrast(73%);
+    }
 }
