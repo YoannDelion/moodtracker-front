@@ -49,23 +49,27 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
     const handleUpdateButtonClick = () => setUpdating(!updating)
 
     return (
-        <Container maxWidth='sm'>
-            <Typography variant={'body1'}>Hello {'username'}</Typography>
-            <Typography variant={'body1'}>How are you feeling today ?</Typography>
-            <div className="monthPicker">
-                <DatePicker
-                    autoOk
-                    margin="normal"
-                    id="date-picker-dialog"
-                    format="MM/DD/yyyy"
-                    disableFuture
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change mood date',
-                    }}
-                />
+        <Container maxWidth='sm' className='mui-container'>
+
+            <div className='homepage-header'>
+                <Typography variant={'body1'}>Hello {'username'}</Typography>
+                <Typography variant={'body1'}>How are you feeling today ?</Typography>
+                <div className="monthPicker">
+                    <DatePicker
+                        autoOk
+                        margin="normal"
+                        id="date-picker-dialog"
+                        format="MM/DD/yyyy"
+                        disableFuture
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change mood date',
+                        }}
+                    />
+                </div>
             </div>
+
             <div className='moods-button-container'>
                 {!isLoading ? <>
                     <div>
@@ -90,9 +94,13 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                     : <CircularProgress />
                 }
             </div>
-            {!choosingMood && <IconButton onClick={handleUpdateButtonClick}>
-                {updating ? <ClearIcon /> : <CreateIcon />}
-            </IconButton>}
+            <div className="homepage-footer">
+                {!choosingMood && <IconButton onClick={handleUpdateButtonClick}>
+                    {updating ? <ClearIcon /> : <CreateIcon />}
+                </IconButton>}
+            </div>
+
+
         </Container>
     )
 }

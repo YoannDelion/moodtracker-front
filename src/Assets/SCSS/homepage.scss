@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 65vh;
+    height: 70%;
 }
 
 .mood-container {
@@ -13,4 +13,12 @@
     &__icon {
         height: 5rem;
     }
+}
+
+.homepage-header {
+    height: 20%;
+}
+
+.homepage-footer {
+    height: 10%;
 }
