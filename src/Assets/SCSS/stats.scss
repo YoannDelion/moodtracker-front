@@ -1,6 +1,10 @@
 .statspage {
     &--values {
         text-align: center;
+
+        .card:first-child {
+            margin-top: 2rem;
+        }
     }
 }
 
@@ -16,7 +20,7 @@
 }
 
 .calendar-mood {
-    height: 3rem;
+    height: 2.5rem;
 }
 
 .list-mood {

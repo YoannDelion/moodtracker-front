@@ -23,7 +23,7 @@ const FeelingsStatsList = ({ primaryFeelings, entries }) => {
     }, [sortFeelings, entries])
 
     return (
-        <div className="feelings-list">
+        <div className="card feelings-list">
             {feelings.map(feeling => (
                 <div className='feelings-list__element' key={feeling.feelingId}>
                     <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}

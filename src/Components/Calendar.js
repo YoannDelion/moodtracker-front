@@ -66,14 +66,16 @@ const Calendar = ({ selectedMonth, entries }) => {
     daysInMonth = rows.map((d, i) => <tr key={i}>{d}</tr>)
 
     return (
-        <table className='calendar'>
-            <thead>
-                <tr>
-                    {weekDayShortName}
-                </tr>
-            </thead>
-            <tbody>{daysInMonth}</tbody>
-        </table>
+        <div className="card">
+            <table className='calendar'>
+                <thead>
+                    <tr>
+                        {weekDayShortName}
+                    </tr>
+                </thead>
+                <tbody>{daysInMonth}</tbody>
+            </table>
+        </div>
     )
 }
 
