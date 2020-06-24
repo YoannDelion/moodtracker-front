@@ -29,6 +29,7 @@ const FeelingsStatsList = ({ primaryFeelings, entries }) => {
                     <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}
                         className={`list-mood moods--${feeling.feelingName}`} />
                     <span>{feeling.entriesCount}</span>
+                    <span>{Math.round(feeling.entriesCount / entries.length * 100)}%</span>
                 </div>
             ))}
         </div>
