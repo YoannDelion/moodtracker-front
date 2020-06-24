@@ -12,6 +12,8 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import CreateIcon from '@material-ui/icons/Create'
 import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
 import * as Moods from '../../Assets/mood-icons'
 
@@ -79,6 +81,9 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                 <Typography variant={'body1'}>Hello {'username'}</Typography>
                 <Typography variant={'body1'}>{isToday ? 'How are you feeling today?' : 'How were you feeling?'}</Typography>
                 <div className="monthPicker">
+                    <IconButton onClick={() => handleDateChange(moment(selectedDate).subtract(1, 'day'))}>
+                        <ChevronLeftIcon />
+                    </IconButton>
                     <DatePicker
                         autoOk
                         margin="normal"
@@ -91,6 +96,9 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                             'aria-label': 'change mood date',
                         }}
                     />
+                    <IconButton disabled={isToday} onClick={() => handleDateChange(moment(selectedDate).add(1, 'days'))}>
+                        <ChevronRightIcon />
+                    </IconButton>
                 </div>
             </div>
 
