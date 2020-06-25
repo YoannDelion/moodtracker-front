@@ -77,9 +77,8 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
     return (
         <Container maxWidth='sm' className='mui-container'>
 
-            <div className='homepage-header'>
-                <Typography variant={'body1'}>Hello {'username'}</Typography>
-                <Typography variant={'body1'}>{isToday ? 'How are you feeling today?' : 'How were you feeling?'}</Typography>
+            <div className='homepage--header'>
+                <Typography variant={'body1'} align='center'>{isToday ? 'How are you feeling today?' : 'How were you feeling?'}</Typography>
                 <div className="monthPicker">
                     <IconButton onClick={() => handleDateChange(moment(selectedDate).subtract(1, 'day'))}>
                         <ChevronLeftIcon />
@@ -127,7 +126,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                     : <CircularProgress />
                 }
             </div>
-            <div className="homepage-footer">
+            <div className="homepage--footer">
                 {!choosingMood && <IconButton onClick={handleUpdateButtonClick}>
                     {updating ? <ClearIcon /> : <CreateIcon />}
                 </IconButton>}
