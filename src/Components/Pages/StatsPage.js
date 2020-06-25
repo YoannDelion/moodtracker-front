@@ -19,7 +19,6 @@ const StatsPage = ({ selectMonthForStatistics, selectedMonth, entries, primaryFe
 
     return (
         <Container maxWidth='sm' className='statspage'>
-            <Typography variant='h4' component='h1'>Statistics</Typography>
             <div className='monthPicker'>
                 <IconButton onClick={() => handleDateChange(moment(selectedMonth).subtract(1, 'month'))}>
                     <ChevronLeftIcon />
