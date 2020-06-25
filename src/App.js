@@ -24,7 +24,6 @@ const App = () => {
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                     <div className="App">
                         <Router>
-                            <Navbar />
                             <div className="container">
                                 <Switch>
                                     <PrivateRoute exact path={'/'} component={HomePage} />
@@ -33,6 +32,7 @@ const App = () => {
                                     <PrivateRoute exact path={'/statistics'} component={StatsPage} />
                                 </Switch>
                             </div>
+                            <Navbar />
                         </Router>
                     </div>
                 </MuiPickersUtilsProvider>

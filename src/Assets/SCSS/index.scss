@@ -13,14 +13,14 @@ html, body {
 }
 
 .container {
-    margin: 80px auto 0 auto;
+    margin: 30px auto 0 auto;
     max-width: 1200px;
     padding: 0 1rem;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 86px);
 }
 
-.nav-container {
-    margin: auto;
+.navbar {
+    box-shadow: 0 -1px 6px rgba(0,0,0,.15);
 }
 
 .monthPicker {
