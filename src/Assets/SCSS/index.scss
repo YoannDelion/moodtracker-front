@@ -21,6 +21,15 @@ html, body {
 
 .navbar {
     box-shadow: 0 -1px 6px rgba(0,0,0,.15);
+    top: auto!important;
+    bottom: 0;
+    align-items: center;
+}
+
+.toolbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .monthPicker {

@@ -6,18 +6,36 @@ import { logoutUser } from '../redux/services/authServices'
 import ExitToApp from '@material-ui/icons/ExitToApp'
 import HomeIcon from '@material-ui/icons/Home'
 import BarChartIcon from '@material-ui/icons/BarChart'
-import BottomNavigation from '@material-ui/core/BottomNavigation'
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
+import IconButton from '@material-ui/core/IconButton'
+import Toolbar from '@material-ui/core/Toolbar'
+import Fab from '@material-ui/core/Fab'
+import AppBar from '@material-ui/core/AppBar'
+import MoodIcon from '@material-ui/icons/Mood'
 
 const Navbar = ({ isLogged, logoutUser }) => {
     const handleLogout = () => logoutUser()
 
     return (
-        isLogged && <BottomNavigation className='navbar'>
-            <BottomNavigationAction component={Link} to={'/statistics'} icon={<BarChartIcon />} />
-            <BottomNavigationAction component={Link} to={'/'} icon={<HomeIcon />} />
-            <BottomNavigationAction onClick={handleLogout} icon={<ExitToApp />} />
-        </BottomNavigation>
+        isLogged && <AppBar position="fixed" className='navbar' >
+            <Toolbar className='toolbar'>
+                <IconButton edge='start' component={Link} to='/statistics'>
+                    <BarChartIcon />
+                </IconButton>
+                <Fab aria-label="add" style={{
+                    position: 'absolute',
+                    zIndex: 1,
+                    top: -30,
+                    left: 0,
+                    right: 0,
+                    margin: '0 auto',
+                }} component={Link} to='/'>
+                    <MoodIcon />
+                </Fab>
+                <IconButton edge='center' onClick={handleLogout}>
+                    <ExitToApp />
+                </IconButton>
+            </Toolbar>
+        </AppBar>
     )
 }
 
