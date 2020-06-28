@@ -84,6 +84,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                         <ChevronLeftIcon />
                     </IconButton>
                     <DatePicker
+                        showTodayButton
                         autoOk
                         margin="normal"
                         id="date-picker-dialog"

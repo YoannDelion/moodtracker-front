@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutUser } from '../redux/services/authServices'
 // Material UI
@@ -11,9 +11,16 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Fab from '@material-ui/core/Fab'
 import AppBar from '@material-ui/core/AppBar'
 import MoodIcon from '@material-ui/icons/Mood'
+import AddIcon from '@material-ui/icons/Add'
 
-const Navbar = ({ isLogged, logoutUser }) => {
+const Navbar = ({ isLogged, logoutUser, hasCurrentEntry }) => {
+
     const handleLogout = () => logoutUser()
+
+    const isHomePage = useRouteMatch({
+        path: '/',
+        exact: true
+    })
 
     return (
         isLogged && <AppBar position="fixed" className='navbar' >
@@ -29,7 +36,7 @@ const Navbar = ({ isLogged, logoutUser }) => {
                     right: 0,
                     margin: '0 auto',
                 }} component={Link} to='/'>
-                    <MoodIcon />
+                    {isHomePage && hasCurrentEntry ? <AddIcon /> : <MoodIcon />}
                 </Fab>
                 <IconButton edge='center' onClick={handleLogout}>
                     <ExitToApp />
@@ -40,7 +47,8 @@ const Navbar = ({ isLogged, logoutUser }) => {
 }
 
 const mapStateToProps = state => ({
-    isLogged: state.auth.isLogged
+    isLogged: state.auth.isLogged,
+    hasCurrentEntry: state.entries.currentEntry
 })
 
 export default connect(mapStateToProps, { logoutUser })(Navbar)
