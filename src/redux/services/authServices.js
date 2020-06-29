@@ -5,6 +5,7 @@ import { fetchedUserInfo } from '../slices/userSlice'
 import { emptyEntries } from '../slices/entriesSlice'
 import { fetchAllEntries } from './entriesService'
 import { getPrimaryFeelings } from './feelingsService'
+import { API_URL } from '../../config'
 
 /**
  * Try to log in user and save axios headers
@@ -14,8 +15,8 @@ import { getPrimaryFeelings } from './feelingsService'
 export const loginUser = (credentials, history) => async dispatch => {
     dispatch(loadingUi())
     try {
-        const data = await axios.post('/login', credentials)
-          .then(response => response.data)
+        const data = await axios.post(`${API_URL}/login`, credentials)
+            .then(response => response.data)
         const FBIdToken = `Bearer ${data.token}`
 
         axios.defaults.headers['Authorization'] = FBIdToken
@@ -40,6 +41,6 @@ export const logoutUser = () => dispatch => {
 }
 
 export const fetchUserInfo = uid => dipatch => {
-    axios.get(`/user/${uid}`)
-      .then(response => dipatch(fetchedUserInfo(response.data)))
+    axios.get(`${API_URL}/user/${uid}`)
+        .then(response => dipatch(fetchedUserInfo(response.data)))
 }

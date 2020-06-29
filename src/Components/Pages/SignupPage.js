@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { loadingUi, stopLoadingUi } from '../../redux/slices/uiSlice'
 import { Link } from 'react-router-dom'
 import { Happy } from '../../Assets/mood-icons/index'
+import { API_URL } from '../../config'
 
 //Material UI
 import Typography from '@material-ui/core/Typography'
@@ -29,7 +30,7 @@ const SignupPage = ({ history, isLoading, dispatch }) => {
         event.preventDefault()
         dispatch(loadingUi())
 
-        axios.post('/signup', newUser)
+        axios.post(`${API_URL}/signup`, newUser)
             .then(response => {
                 dispatch(stopLoadingUi())
                 history.push('/login')
