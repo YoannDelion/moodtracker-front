@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../redux/services/authServices'
 // Material UI
 import ExitToApp from '@material-ui/icons/ExitToApp'
-import HomeIcon from '@material-ui/icons/Home'
 import BarChartIcon from '@material-ui/icons/BarChart'
 import IconButton from '@material-ui/core/IconButton'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -23,12 +22,12 @@ const Navbar = ({ isLogged, logoutUser, hasCurrentEntry }) => {
     })
 
     return (
-        isLogged && <AppBar position="fixed" className='navbar' >
+        isLogged && <AppBar position="fixed" className='navbar' color='default'>
             <Toolbar className='toolbar'>
                 <IconButton edge='start' component={Link} to='/statistics'>
                     <BarChartIcon />
                 </IconButton>
-                <Fab aria-label="add" style={{
+                <Fab aria-label="add" color='primary' style={{
                     position: 'absolute',
                     zIndex: 1,
                     top: -30,
@@ -36,7 +35,7 @@ const Navbar = ({ isLogged, logoutUser, hasCurrentEntry }) => {
                     right: 0,
                     margin: '0 auto',
                 }} component={Link} to='/'>
-                    {isHomePage && hasCurrentEntry ? <AddIcon /> : <MoodIcon />}
+                    {isHomePage && hasCurrentEntry ? <AddIcon style={{ color: 'white' }} /> : <MoodIcon style={{ color: 'white' }} />}
                 </Fab>
                 <IconButton edge='center' onClick={handleLogout}>
                     <ExitToApp />

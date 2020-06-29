@@ -6,7 +6,6 @@ import { selectedMonthEntriesSelector } from '../../redux/selectors/entriesSelec
 import Calendar from '../Calendar'
 import moment from 'moment'
 // MUI
-import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import FeelingsStatsList from '../FeelingsStatsList'
 import IconButton from '@material-ui/core/IconButton'
