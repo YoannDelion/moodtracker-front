@@ -37,7 +37,7 @@ const Navbar = ({ isLogged, logoutUser, hasCurrentEntry }) => {
                 }} component={Link} to='/'>
                     {isHomePage && hasCurrentEntry ? <AddIcon style={{ color: 'white' }} /> : <MoodIcon style={{ color: 'white' }} />}
                 </Fab>
-                <IconButton edge='center' onClick={handleLogout}>
+                <IconButton onClick={handleLogout}>
                     <ExitToApp />
                 </IconButton>
             </Toolbar>

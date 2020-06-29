@@ -92,7 +92,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                         disableFuture
                         value={selectedDate}
                         onChange={handleDateChange}
-                        KeyboardButtonProps={{
+                        keyboardbuttonprops={{
                             'aria-label': 'change mood date',
                         }}
                     />
@@ -104,7 +104,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
 
             <div className='moods-button-container'>
                 {!isLoading ? <div>
-                    {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='mood-container'>
+                    {choosingMood || updating ? (primaryFeelings ? primaryFeelings.map(feeling => <div className='mood-container' key={feeling.feelingId}>
                         <img src={Moods[feeling.feelingName]} alt={feeling.feelingName}
                             className={`mood-container__icon moods--${feeling.feelingName}`} />
                         <Button
