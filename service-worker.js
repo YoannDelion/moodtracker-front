@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/moodtracker-front/precache-manifest.e7019a6ce46e2b6bf46a3837e5a483bf.js"
+  "/moodtracker-front/precache-manifest.86693cb42ba62a3dc66bb774f4f788a9.js"
 );
 
 self.addEventListener('message', (event) => {
