@@ -26,4 +26,4 @@ const entriesSlice = createSlice({
 
 export const { addNewEntry, fetchedAllEntries, emptyEntries, selectCurrentEntry, updateEntry, deleteCurrentEntryFromStore, selectMonth } = entriesSlice.actions
 
-export default entriesSlice.reducer
+export default entriesSlice.reducer 

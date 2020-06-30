@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    isLoading: false
+    isLoading: false,
+    isModalOpen: true
 }
 
 const uiSlice = createSlice({
@@ -9,10 +10,11 @@ const uiSlice = createSlice({
     initialState,
     reducers: {
         loadingUi: state => { state.isLoading = true },
-        stopLoadingUi: state => { state.isLoading = false }
+        stopLoadingUi: state => { state.isLoading = false },
+        toggleModal: (state, action) => { state.isModalOpen = action.payload }
     }
 })
 
-export const { loadingUi, stopLoadingUi } = uiSlice.actions
+export const { loadingUi, stopLoadingUi, toggleModal } = uiSlice.actions
 
 export default uiSlice.reducer

@@ -46,7 +46,7 @@ const SignupPage = ({ history, isLoading, dispatch }) => {
         <Grid container maxWidth='sm'>
             <div className='formContainer'>
 
-                <img src={Happy} />
+                <img src={Happy} alt='Happy Face' />
                 <Typography variant='h4' component='h1'>Welcome! Sign up here</Typography>
 
                 <form className='form' onSubmit={handleSubmit} noValidate>

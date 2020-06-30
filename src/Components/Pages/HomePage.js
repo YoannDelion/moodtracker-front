@@ -3,6 +3,7 @@ import { postNewEntry } from '../../redux/services/entriesService'
 import { connect } from 'react-redux'
 import { selectCurrentEntry } from '../../redux/slices/entriesSlice'
 import moment from 'moment'
+import { toggleDetailModal } from '../../redux/services/uiService'
 // Material UI
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
@@ -14,11 +15,15 @@ import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 import * as Moods from '../../Assets/mood-icons'
 
 
-const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCurrentEntry, currentEntry }) => {
+const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCurrentEntry, currentEntry, isModalOpen, toggleDetailModal }) => {
 
     const [selectedDate, setSelectedDate] = useState(moment())
     const [newEntry, setNewEntry] = useState({ feelingId: '', entryDate: '' })
@@ -132,6 +137,27 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                     {updating ? <ClearIcon /> : <CreateIcon />}
                 </IconButton>}
             </div>
+
+
+            <Dialog
+                open={isModalOpen}
+                onClose={() => toggleDetailModal(!isModalOpen)}
+                fullWidth={true}
+                maxWidth='sm'
+                aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Add a note to your mood</DialogTitle>
+                <DialogContent>
+                    modal content
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => toggleDetailModal(!isModalOpen)} color="primary">
+                        Cancel
+                     </Button>
+                    <Button onClick={() => toggleDetailModal(!isModalOpen)} color="primary">
+                        Add
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container >
     )
 }
@@ -140,7 +166,8 @@ const mapStateToProps = state => ({
     isLoading: state.ui.isLoading,
     primaryFeelings: state.feelings.primaryFeelings,
     currentEntry: state.entries.currentEntry,
-    entries: state.entries.entries
+    entries: state.entries.entries,
+    isModalOpen: state.ui.isModalOpen
 })
 
-export default connect(mapStateToProps, { postNewEntry, selectCurrentEntry })(HomePage)
+export default connect(mapStateToProps, { postNewEntry, selectCurrentEntry, toggleDetailModal })(HomePage)

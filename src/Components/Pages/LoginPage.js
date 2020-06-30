@@ -35,7 +35,7 @@ const LoginPage = ({ history, loginUser, isLoading }) => {
     return (
         <Grid container maxWidth='sm'>
             <div className='formContainer'>
-                <img src={Happy} />
+                <img src={Happy} alt='Happy face' />
                 <Typography variant='h4' component='h1'>Welcome back!</Typography>
 
                 <form className='form' onSubmit={handleSubmit} noValidate>

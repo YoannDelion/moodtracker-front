@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logoutUser } from '../redux/services/authServices'
+import { toggleDetailModal } from '../redux/services/uiService'
 // Material UI
 import ExitToApp from '@material-ui/icons/ExitToApp'
 import BarChartIcon from '@material-ui/icons/BarChart'
@@ -12,7 +13,7 @@ import AppBar from '@material-ui/core/AppBar'
 import MoodIcon from '@material-ui/icons/Mood'
 import AddIcon from '@material-ui/icons/Add'
 
-const Navbar = ({ isLogged, logoutUser, hasCurrentEntry }) => {
+const Navbar = ({ isLogged, logoutUser, hasCurrentEntry, isModalOpen, toggleDetailModal }) => {
 
     const handleLogout = () => logoutUser()
 
@@ -35,7 +36,7 @@ const Navbar = ({ isLogged, logoutUser, hasCurrentEntry }) => {
                     right: 0,
                     margin: '0 auto',
                 }} component={Link} to='/'>
-                    {isHomePage && hasCurrentEntry ? <AddIcon style={{ color: 'white' }} /> : <MoodIcon style={{ color: 'white' }} />}
+                    {isHomePage && hasCurrentEntry ? <AddIcon style={{ color: 'white' }} onClick={() => toggleDetailModal(!isModalOpen)} /> : <MoodIcon style={{ color: 'white' }} />}
                 </Fab>
                 <IconButton onClick={handleLogout}>
                     <ExitToApp />
@@ -47,7 +48,8 @@ const Navbar = ({ isLogged, logoutUser, hasCurrentEntry }) => {
 
 const mapStateToProps = state => ({
     isLogged: state.auth.isLogged,
-    hasCurrentEntry: state.entries.currentEntry
+    hasCurrentEntry: state.entries.currentEntry,
+    isModalOpen: state.ui.isModalOpen
 })
 
-export default connect(mapStateToProps, { logoutUser })(Navbar)
+export default connect(mapStateToProps, { logoutUser, toggleDetailModal })(Navbar)
