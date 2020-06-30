@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import 'tail.datetime/css/tail.datetime-default-blue.css'
+import StyledBadge from './StyledBadge'
 
 import * as Moods from '../Assets/mood-icons'
 
@@ -39,10 +40,16 @@ const Calendar = ({ selectedMonth, entries }) => {
     let daysInMonth = []
     for (let d = 1; d <= moment(date).daysInMonth(); d++) {
         let entry = hasEntry(d)
-        daysInMonth.push(<td key={d} className='calendar-day'>{entry ? <img
-            src={Moods[entry.feeling.feelingName]} alt={entry.feeling.feelingName}
-            className={`calendar-mood moods--${entry.feeling.feelingName}`} />
-            : d}</td>)
+        daysInMonth.push(<td key={d} className='calendar-day'>{entry ? (
+            entry.note ? <StyledBadge badgeContent='+' color='primary' anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right'
+            }}>
+                <img src={Moods[entry.feeling.feelingName]} alt={entry.feeling.feelingName}
+                    className={`calendar-mood moods--${entry.feeling.feelingName}`} />
+            </StyledBadge> : <img src={Moods[entry.feeling.feelingName]} alt={entry.feeling.feelingName}
+                className={`calendar-mood moods--${entry.feeling.feelingName}`} />
+        ) : d}</td>)
     }
 
     // Creates the needed amount of rows in the calendar
