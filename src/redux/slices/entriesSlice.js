@@ -20,10 +20,18 @@ const entriesSlice = createSlice({
         deleteCurrentEntryFromStore: state => {
             state.entries = state.entries.filter(entry => entry.entryId !== state.currentEntry.entryId)
         },
-        selectMonth: (state, action) => { state.selectedMonth = action.payload }
+        selectMonth: (state, action) => { state.selectedMonth = action.payload },
+        addNote: (state, action) => {
+            const entryIndex = state.entries.findIndex(entry => entry.entryId === action.payload.entryId)
+            state.entries[entryIndex] = { ...state.entries[entryIndex], note: action.payload.note }
+            state.currentEntry = state.entries[entryIndex]
+        }
     }
 })
 
-export const { addNewEntry, fetchedAllEntries, emptyEntries, selectCurrentEntry, updateEntry, deleteCurrentEntryFromStore, selectMonth } = entriesSlice.actions
+export const {
+    addNewEntry, fetchedAllEntries, emptyEntries, selectCurrentEntry, updateEntry,
+    deleteCurrentEntryFromStore, selectMonth, addNote
+} = entriesSlice.actions
 
 export default entriesSlice.reducer 

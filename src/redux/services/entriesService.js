@@ -1,5 +1,5 @@
 import { loadingUi, stopLoadingUi } from '../slices/uiSlice'
-import { addNewEntry, deleteCurrentEntryFromStore, selectMonth } from '../slices/entriesSlice'
+import { addNewEntry, deleteCurrentEntryFromStore, selectMonth, addNote } from '../slices/entriesSlice'
 import axios from 'axios'
 import { fetchedAllEntries } from '../slices/entriesSlice'
 import store from '../store'
@@ -41,6 +41,26 @@ export const fetchAllEntries = () => async dispatch => {
             .then(response => response.data)
         dispatch(fetchedAllEntries(entries))
         dispatch(stopLoadingUi())
+    } catch (e) {
+        dispatch(stopLoadingUi())
+        return Promise.reject(e)
+    }
+}
+
+/**
+ * Add or update the note of a given Entry 
+ */
+export const addEntryNote = entry => async dispatch => {
+    dispatch(loadingUi())
+    try {
+        await axios.post(`${API_URL}/entry/${entry.entryId}/details`, entry)
+            .then(() => {
+                dispatch(addNote({
+                    entryId: entry.entryId,
+                    note: entry.note
+                }))
+                dispatch(stopLoadingUi())
+            })
     } catch (e) {
         dispatch(stopLoadingUi())
         return Promise.reject(e)

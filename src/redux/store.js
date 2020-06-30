@@ -12,7 +12,8 @@ import { getPrimaryFeelings } from './services/feelingsService'
 
 const persistConfig = {
     key: 'root',
-    storage
+    storage,
+    blacklist: ['ui']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
