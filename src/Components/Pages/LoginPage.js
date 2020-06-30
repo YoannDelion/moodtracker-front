@@ -33,7 +33,7 @@ const LoginPage = ({ history, loginUser, isLoading }) => {
     }
 
     return (
-        <Grid container maxWidth='sm'>
+        <Grid container >
             <div className='formContainer'>
                 <img src={Happy} alt='Happy face' />
                 <Typography variant='h4' component='h1'>Welcome back!</Typography>

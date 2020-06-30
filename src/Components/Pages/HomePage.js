@@ -134,7 +134,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                 </IconButton>}
             </div>
 
-            <DetailModal icon={Moods[currentEntry.feeling.feelingName]} />
+            {currentEntry && currentEntry.feeling && <DetailModal icon={Moods[currentEntry.feeling.feelingName]} />}
         </Container >
     )
 }
