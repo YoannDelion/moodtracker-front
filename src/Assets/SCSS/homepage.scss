@@ -36,3 +36,14 @@
         height:15rem;
     }
 }
+
+.detail-modal {
+    &--title {
+        text-align: center;
+
+        & img {
+            height: 4rem;
+            margin-bottom: -10px;
+        }
+    }
+}
