@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/moodtracker-front/static/css/main.83fc6509.chunk.css",
-    "main.js": "/moodtracker-front/static/js/main.e4269af4.chunk.js",
-    "main.js.map": "/moodtracker-front/static/js/main.e4269af4.chunk.js.map",
+    "main.js": "/moodtracker-front/static/js/main.1372e911.chunk.js",
+    "main.js.map": "/moodtracker-front/static/js/main.1372e911.chunk.js.map",
     "runtime-main.js": "/moodtracker-front/static/js/runtime-main.e0e2f289.js",
     "runtime-main.js.map": "/moodtracker-front/static/js/runtime-main.e0e2f289.js.map",
     "static/css/2.ddfd451b.chunk.css": "/moodtracker-front/static/css/2.ddfd451b.chunk.css",
     "static/js/2.9268d119.chunk.js": "/moodtracker-front/static/js/2.9268d119.chunk.js",
     "static/js/2.9268d119.chunk.js.map": "/moodtracker-front/static/js/2.9268d119.chunk.js.map",
     "index.html": "/moodtracker-front/index.html",
-    "precache-manifest.7420672dd4d3e34dfd207f13e1692fdf.js": "/moodtracker-front/precache-manifest.7420672dd4d3e34dfd207f13e1692fdf.js",
+    "precache-manifest.fb8cfe32e2ecb7c4a94d9d14210c15d6.js": "/moodtracker-front/precache-manifest.fb8cfe32e2ecb7c4a94d9d14210c15d6.js",
     "service-worker.js": "/moodtracker-front/service-worker.js",
     "static/css/2.ddfd451b.chunk.css.map": "/moodtracker-front/static/css/2.ddfd451b.chunk.css.map",
     "static/css/main.83fc6509.chunk.css.map": "/moodtracker-front/static/css/main.83fc6509.chunk.css.map",
@@ -25,6 +25,6 @@
     "static/css/2.ddfd451b.chunk.css",
     "static/js/2.9268d119.chunk.js",
     "static/css/main.83fc6509.chunk.css",
-    "static/js/main.e4269af4.chunk.js"
+    "static/js/main.1372e911.chunk.js"
   ]
 }
