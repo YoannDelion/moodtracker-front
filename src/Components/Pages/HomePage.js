@@ -3,7 +3,7 @@ import { postNewEntry } from '../../redux/services/entriesService'
 import { connect } from 'react-redux'
 import { selectCurrentEntry } from '../../redux/slices/entriesSlice'
 import moment from 'moment'
-import DetailModal from '../DetailModal'
+import AddDetailModal from '../AddDetailModal'
 // Material UI
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
@@ -134,7 +134,7 @@ const HomePage = ({ isLoading, postNewEntry, primaryFeelings, entries, selectCur
                 </IconButton>}
             </div>
 
-            {currentEntry && currentEntry.feeling && <DetailModal icon={Moods[currentEntry.feeling.feelingName]} />}
+            {currentEntry && currentEntry.feeling && <AddDetailModal icon={Moods[currentEntry.feeling.feelingName]} />}
         </Container >
     )
 }
