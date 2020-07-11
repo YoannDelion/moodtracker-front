@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d678e622e3f5073dacfc36b9f9135a6c",
+    "revision": "70a101074dabfc162d55217ca56c066f",
     "url": "/moodtracker-front/index.html"
   },
   {
-    "revision": "4a39d949ee8b207f7926",
+    "revision": "c32ffcb956ff0bd5caef",
     "url": "/moodtracker-front/static/css/2.ddfd451b.chunk.css"
   },
   {
-    "revision": "dd7958cbc0de18471ea5",
+    "revision": "9dbf378ec7b138baa80a",
     "url": "/moodtracker-front/static/css/main.83fc6509.chunk.css"
   },
   {
-    "revision": "4a39d949ee8b207f7926",
-    "url": "/moodtracker-front/static/js/2.f67db024.chunk.js"
+    "revision": "c32ffcb956ff0bd5caef",
+    "url": "/moodtracker-front/static/js/2.9268d119.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/moodtracker-front/static/js/2.f67db024.chunk.js.LICENSE.txt"
+    "url": "/moodtracker-front/static/js/2.9268d119.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "dd7958cbc0de18471ea5",
-    "url": "/moodtracker-front/static/js/main.ac927fdc.chunk.js"
+    "revision": "9dbf378ec7b138baa80a",
+    "url": "/moodtracker-front/static/js/main.1372e911.chunk.js"
   },
   {
     "revision": "a9e8d6656a2cf468897d",
